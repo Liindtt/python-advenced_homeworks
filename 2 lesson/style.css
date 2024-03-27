@@ -1,0 +1,37 @@
+.mark {
+    background-color: lightgray;
+    color: #8a2929;
+}
+
+.code {
+    color: #8a2929;
+    background-color: lightgray;
+    padding: 10px;
+}
+
+.hr {
+    height: 4px;
+    background-color: lightgray;
+}
+
+.tag {
+    color: #39a4a4;
+    background-color: lightgray;
+}
+
+.nested-lists {
+    margin-left: 20px;
+    font-family: 'Times New Roman', serif; 
+    font-size: 18px;
+}
+
+.list_of_definitions {
+    background-color: #efebeb;
+    padding: 8px 20px;
+    font-size: 18px;
+}
+
+li::marker {
+    color: #000;
+    font-weight: bold;
+}
