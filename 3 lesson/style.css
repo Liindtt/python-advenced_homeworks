@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+}
+.container {
+    box-shadow: inset 1px 1px 11px 2px rgba(0,0,0,0.3);
+    padding: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+.title {
+    color: #FF69B4;
+    font-size: 40px;
+    margin: 5px 0;
+    border-bottom: 10px dotted #800080;
+    font-family: "Times New Roman", sans-serif;
+}
+.email {
+    text-decoration: none;
+    /*color: green;*/
+}
+.link {
+    /*color: red;*/
+}
+.address-block {
+    background-color: lightgray;
+    border: 6px solid #800080;
+    padding: 30px;
+}
+.sub-title {
+    font-style: italic;
+}
+
+/* 1ий пункт */
+.container > h3 + p::first-letter {
+    color: goldenrod;
+    font-size: 23px;
+    font-family: Algerian, sans-serif;
+}
+/* 2ий пункт (не зміг зробити останній рядок, тільки перший) */
+.container > p + p::first-line {
+    font-size: 19px;
+    color: cadetblue;
+    font-family: Calibri, sans-serif;
+}
+/* 3тій пункт */
+img {
+    border-radius: 50%;
+    width: 150px;
+}
+img:hover {
+    transition: 0.3s;
+    border: 5px solid green;
+}
+/* 4тий пункт */
+a {
+    color: blue;
+}
+a:hover {
+    color: green;
+}
+a:visited {
+    color: orange;
+}
+/* 5тий пункт */
+.sub-title::before {
+    content: url("images/operator.png");
+    width: 10px;
+}
+.sub-title::after {
+    content: ":";
+}
+.tel {
+  position: relative;
+  text-decoration: underline;
+  color: #00f;
+  cursor: help;
+}
+.tel:hover::after {
+  content: "just click for call";
+  position: absolute;
+  left: 0;
+  top: 24px;
+  min-width: 100px;
+  border: 2px gray solid;
+  border-radius: 10px;
+  background-color: #deded9;
+  padding: 12px;
+  color: #000000;
+  font-size: 14px;
+  z-index: 1;
+}
