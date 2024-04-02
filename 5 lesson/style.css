@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+}
+.container {
+    max-width: 550px;
+    margin: 0 auto;
+}
+.list {
+    background-color: #EF9EAF;
+    padding-inline-start: 0px;
+    padding: 10px;
+    color: #fff;    
+}
+.list > li {
+    margin: 10px;
+    padding: 10px;
+    background-color: #C66377;
+    list-style-position: inside;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+}
+.list > li > span {
+    background-color: #9F354B;
+    padding: 10px 30px;
+    margin-left: 5px;
+}
