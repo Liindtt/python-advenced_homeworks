@@ -1,0 +1,52 @@
+/* Завдання 1 */
+.box > p {
+    font-size: 25px;
+    font-family: "Segoe UI Mono", sans-serif;
+    font-weight: bold;
+}
+.container p {
+    color: purple;
+    font-size: 20px;
+}
+.container > .wrapper > .box > span {
+    font-family: Consolas, sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline;
+    letter-spacing: 6px;
+}
+.inner p:last-child {
+    color: aqua;
+}
+section > .box > p + span {
+    color: red;
+    text-decoration: line-through;
+}
+
+/* Завдання 2 */
+.notebox {
+    border: 5px solid grey;
+    padding: 7px;
+    margin: 10px;
+    font-size: 20px;
+    font-family: "Segoe UI Mono", sans-serif;
+}
+.warning {
+    border-color: orange;
+    font-weight: bold;
+}
+.danger {
+    border-color: red;
+    font-weight: bold;
+}
+
+/* Завдання 3 */
+li[class] {
+    font-size: 200%;
+}
+li[class="a"] {
+    background-color: yellow;
+}
+li[class*="a"] {
+    color: red;
+}
