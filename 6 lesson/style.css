@@ -6,6 +6,7 @@
     border: 2px solid purple;
     width: 200px;
     margin: 20px;
+    float: left;
 }
 .span1 {
     display: inline;
