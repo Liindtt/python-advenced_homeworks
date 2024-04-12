@@ -75,4 +75,10 @@ a {
     color: #fff;
 }
 
-html{scroll-behavior: smooth;}
+html{
+    scroll-behavior: smooth;
+}
+
+#section1, #section2, #section3, #section4 {
+    padding-top: 65px;
+}
