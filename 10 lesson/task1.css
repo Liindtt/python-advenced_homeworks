@@ -1,0 +1,49 @@
+/* .container {
+    height: 100vh;
+    background-image: url('images/kitty.png');
+    background-image : url("https://dev-to-uploads.s3.amazonaws.com/uploads/articles/szxp3jqyjyksrep1ep82.png");
+    background-repeat : space;
+    background-size : 200px 200px;
+}
+
+.container{
+    background-image: url("images/kitty-idea.png");
+    background-size: 200px 200px;
+    background-repeat: no-repeat;
+  
+    background-position : 300px 200px;
+    height: 100vh;
+  } */
+
+  /* .container{
+    background-image: url('images/cute-girl.jpg');
+    background-repeat: no-repeat;
+    background-size: 400px 400px;
+   */
+  /* // Change  values here  👇  to see difference  */
+    /* background-origin: border-box;
+    padding: 40px;
+    border: 25px solid red;
+    border-style: dashed;
+   */
+  /* // Width & height for container 👇 */
+    /* width : 400px;
+    height : 400px;
+  } */
+
+  .container{    
+    background-image: url('images/cute-girl.jpg');
+    background-repeat: no-repeat;
+    background-size: 500px 700px;
+  
+  /* // Change  values here  👇  to see difference  */
+    background-clip: content-box;
+    padding: 40px;
+    border: 25px solid red;
+    border-style: dashed;
+  
+  /* // Width & height for container 👇 */
+    width : 400px;
+    height : 400px;
+    background-attachment: scroll;
+  }
