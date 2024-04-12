@@ -1,0 +1,91 @@
+table {
+    font-family: Calibri;
+    width: 60%;
+    text-align: center;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+td {
+    padding: 8px;
+}
+
+th {
+    text-transform: uppercase;
+    padding: 15px 25px;
+}
+
+th, td {
+    border: 1px solid gray;
+
+}
+
+.col-1 {
+    background-color: #FFEE99;
+    width: 3%;
+}
+
+.col-2 {
+    background-color: #FFEE99;
+    width: 1%;
+}
+
+.col-3 {
+    background-color: #CCCCFF;
+    width: 22%;
+}
+
+.col-4 {
+    background-color: #FFBBBB;
+    width: 23%;
+}
+
+.col-5 {
+    background-color: #AAFFCC;
+    width: 20%;
+}
+
+.col-6 {
+    background-color: #FFBBFF;
+    width: 19%;
+}
+
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6 {
+    padding: 20px 30px;
+}
+
+.row-2 td:first-child {
+    font-style: normal;
+}
+
+.row-2 {
+    font-style: italic;
+}
+
+.row-3 {
+    font-weight: bold;
+}
+
+.row-4 td:first-child {
+    text-align: center;
+}
+
+.row-4 td {
+    font-size: 12px;
+    font-style: italic;
+    text-align: left;
+    padding: 5px;
+}
+
+.row-5 td:nth-child(n+3) {
+    padding: 8px 20px;
+
+}
+
+.row-7 td:nth-child(n+2) {
+    padding: 8px 25px;
+}
+
+.bold {
+    font-weight: bold;
+}

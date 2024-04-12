@@ -1,0 +1,81 @@
+table {
+    font-family: sans-serif;
+    min-width: 650px;
+    max-width: 800px;
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px 15px;
+    text-align: center;
+}
+
+thead, tfoot {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+caption {
+    text-transform: uppercase;
+    text-align: right;
+    color: #666666;
+}
+
+.col-1 {
+    background-color: #dddddd;
+    width: auto;
+}
+.col-2 {
+    background-color: #17d0d3;
+    width: 17%;
+}
+.col-3 {
+    background-color: #8ac149;
+    width: 17%;
+}
+.col-4 {
+    background-color: #feca28;
+    width: 17%;
+}
+.col-5 {
+    background-color: #f44236;
+    width: 17%;
+}
+
+tr th:first-child{
+    color:#666666;
+}
+
+td, th {
+    text-align: center;
+    padding: 1em;
+}
+
+tr td:first-child{
+    text-align: left;
+    color: #666666;
+    padding-left: 0.7em;
+}
+
+span {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.2em;
+    display: inline-block;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+}
+
+thead {
+    /* задаємо нижню межу для шапки таблиці */
+    border-bottom: 1px solid #ebebeb;
+}
+tfoot {
+    /* задаємо верхню межу для підвалу таблиці */
+    border-top: 1px solid #ebebeb;
+}
