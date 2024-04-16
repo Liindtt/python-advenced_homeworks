@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+    <link rel="stylesheet" href="task1.css">
+</head>
+<body>
+    <form action="" method="post">
+        <div class="form-header">
+            <h1>Job Application Registration</h1>
+        </div>
+
+        <div class="form-body">
+            <div class="form-group">
+                <label for="">Full Name:</label>
+                <input type="text" minlength="4" maxlength="10" required>
+            </div>
+
+            <div class="form-group">
+                <label for="">Email Address:</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tel-num">Phone Number:</label>
+                <input type="tel" placeholder="+38-099-888-77-66" required pattern="\+38-\d{3}-\d{3}-\d{2}-\d{2}">
+            </div>
+
+            <div class="form-group">
+                <label for="tel-num">Resume (PDF or Word)</label>
+                <input type="file" required name="file" id="file" accept=".pdf, .docx" multiple>
+            </div>
+
+            <div class="form-group">
+                <label for="tel-num">Position Applied: </label>
+                <select name="" id="">
+                    <option value="">Select Position</option>
+                    <option value="">Select Position 2</option>
+                    <option value="">Select Position 3</option>
+                </select>
+            </div>
+
+            <button type="submit">Submit Application</button>
+        </div>
+        
+    </form>
+</body>
+</html>
