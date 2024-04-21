@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+.site-bg {
+    background-image: url("images/main_background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    background-color: #000;
+}
+
+.header {
+    background-color: #000;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+}
+
+.link a {
+    font-family: "Montserrat", sans-serif;
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 23.16px;
+    letter-spacing: 0.12em;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+}
+
+.products {
+    background-color: #000;
+    margin: 100px 0;
+}
+
+.products h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 78.02px;
+    letter-spacing: 0.3em;
+    text-align: center;
+    color: #FD7D54;
+    padding-top: 70px;
+    padding-bottom: 20px;
+}
+
+.products {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24.38px;
+    letter-spacing: 0.03em;
+    text-align: center;
+    color: #fff;
+}
+
+.products-blocks {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.product-block {
+    text-align: center;
+    max-width: 293px;
+    border: 4px solid #fff;
+    margin-top: 70px;
+    margin-bottom: 90px;
+    padding-bottom: 30px;
+}
+
+.product-block h3 {
+    text-transform: uppercase;
+    font-family: Montserrat;
+    font-size: 27px;
+    font-weight: 800;
+    line-height: 32.91px;
+    letter-spacing: 0.12em;
+}
+
+.line {
+    border: 3px solid white;
+    width: 23px;
+    display: inline-block;
+}
+
+.product-block_text {
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 25px;
+    letter-spacing: 0.03em;
+    margin: 15px 30px;
+}
+
+.button {
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    font-family: Montserrat;
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 23.16px;
+    letter-spacing: 0.12em;
+    color: #41C3F6;
+    display: block;
+}
+
+a:hover {
+    color: #551A8B;
+    transition: .3s;
+}
+
+.product-block img {
+    margin: 35px;
+}
+
+.footer {
+    max-height: 50px;
+    background-color: #000;
+    text-align: center;
+}
+
+.footer-text {
+    color: #fff;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 50px;
+    letter-spacing: 0.1em;
+    vertical-align: middle;
+}
