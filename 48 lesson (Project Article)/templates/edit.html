@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+    <form action="/update/{{article.id}}" method="post">
+        <div class="mb-3">
+            <label>Title</label>
+            <input type = "text" name = "title" placeholder = "Enter new title of article" class="form-control" value="{{article.title}}"/>
+        </div>
+        <div class="mb-3">
+            <label>Author</label>
+            <input type = "text" name = "author" placeholder = "Enter new author of article" class="form-control" value="{{article.author}}"/>
+        </div>
+        <div class="mb-3">
+            <label>Year</label>
+            <input type = "text" name = "year" placeholder = "Enter new year of article" class="form-control" value="{{article.year}}"/>
+        </div>
+        <input type = "submit" value = "Update" class="btn btn-primary mb-3"/>
+     </form>
+{% endblock content %}
