@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} About {% endblock %}
+{% load static %}
+{% block content %}
+<div class="container d-flex align-items-center justify-content-center">
+    <div>
+        <h2 class="text-center mt-3">My name is Yaroslav.</h2>
+        <h3 class="text-center mb-2">My photo: </h3>
+        <div style="display: flex; justify-content: center">
+            <img src="{% static 'img/photo.jpg' %}" alt="my_photo" width="50%">
+        </div>
+    </div>
+</div>
+{% endblock %}
