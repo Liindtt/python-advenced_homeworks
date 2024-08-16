@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %} Filter form {% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>Search films by filter form</h2>
+        <form method="GET" action="{% url 'filter_film' %}">
+            <div class="mb-3 w">
+                <label for="genre" class="form-label">Genre</label>
+                <input type="text" class="form-control" id="genre" name="genre" placeholder="Enter genre">
+            </div>
+            <div class="mb-3">
+                <label for="year" class="form-label">Year</label>
+                <input type="number" class="form-control" id="year" name="year" placeholder="Enter year">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+{% endblock %}

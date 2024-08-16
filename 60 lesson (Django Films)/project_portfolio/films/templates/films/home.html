@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Movies List</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for film in films_list %}
+            <tr>
+                <td><a href="{% url 'film_detail' film.id %}">{{ film.title }}</a></td>
+                <td>{{ film.year }}</td>
+                <td>{{ film.genre }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

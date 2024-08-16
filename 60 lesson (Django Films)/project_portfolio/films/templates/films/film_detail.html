@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %} {{ film.title }} {% endblock %}
+
+{% block content %}
+    <div class="container text-center mt-5">
+    <h2>{{ film.title }}</h2>
+    <div><strong>Year:</strong> {{ film.year }}</div>
+    <p><strong>Genre:</strong> {{ film.genre }}</p>
+
+    <a href="{% url 'home' %}">Back to all films</a>
+{% endblock %}
