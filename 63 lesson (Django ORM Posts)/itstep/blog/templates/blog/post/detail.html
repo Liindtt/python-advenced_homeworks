@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h1>{{ post.title }}</h1>
+    <div>Category: {{ post.category.title }}</div>
+    <div>Avg rating: {{ avg_rating }} <span class="fa fa-star checked"></span></div>
+    <p>{{ post.body | linebreaks }}</p>
+
+        {% for rating in ratings %}
+        <div class="m-3">
+            <div>{{ rating.user.username }}</div>
+            <div>
+                    {% for i in range %}
+                        {% if i <= rating.rating %}
+                            <span class="fa fa-star checked"></span>
+                        {% else %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                    {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    <div>Published: {{ post.publish }}</div>
+</div>
+
+{% endblock %}
