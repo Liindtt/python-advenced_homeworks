@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %} My blog {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center pt-4">My blog - list of posts</h1>
+
+    <!-- Фільтрація за категоріями -->
+    <ul style="display: flex; color: grey; list-style: none;" class="text-center">
+        <li style="margin-right: 7px;"><a href="{% url 'blog:post-list' %}">All Categories</a></li>
+        {% for category in categories %}
+            <li style="margin-right: 7px;">
+                {% if category.id %}
+                    <a href="{% url 'blog:posts-by-category' category.id %}">{{ category.title.title }}</a>
+                {% else %}
+                    <p>Error: Category ID is missing</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form method="get" action="{% url 'blog:post-list' %}" class="d-flex mt-4">
+        <input type="text" name="q" placeholder="Пошук постів..." value="{{ request.GET.q }}" class="form-control me-2">
+        <button type="submit" class="btn btn-primary">Пошук</button>
+    </form>
+
+    <div class="row mt-n5">
+        {% for post in posts %}
+        <div class="col-md-6 col-lg-4 mt-5 wow fadeInUp" data-wow-delay=".2s"
+             style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+            <div class="blog-grid">
+                <div class="blog-grid-img position-relative"><img alt="img"
+                                                                  src="https://www.bootdey.com/image/360x200/808080/FFFFFF">
+                </div>
+                <div class="blog-grid-text p-4 card" style="max-width: 360px">
+                    <h3 class="h5 mb-3"><a href="{% url 'blog:post-detail' post.id %}">{{ post.title | title }}</a></h3>
+                    <h3 class="h6 mb-3">Category: {{ post.category.title }}</h3>
+                    <p class="display-30">{{ post.body | truncatewords:30 | linebreaks }}</p>
+                    <h3 class="h6 mb-3">Published: {{ post.publish|date:"D d M Y f" }}</h3>
+                    <h3 class="h6 mb-3">Status: {{ post.status }}</h3>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">Нічого не знайдено за вашим запитом.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
