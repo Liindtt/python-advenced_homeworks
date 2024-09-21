@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p>Tags: {{ post.tags.all | join:", " }}</p>
+    <p class="date">Published {{ post.publish }}</p>
+    {{ post.body|linebreaks }}
+
+<a href="{% url 'blog:post-edit' post.pk %}"><button type="submit">Edit post</button></a>
+
+{% if request.user.is_superuser %}
+<form action="{% url 'blog:post-delete' post.pk %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" onclick="return confirm('Ви впевнені, що хочете видалити цей пост?');">Delete post</button>
+</form>
+{% endif %}
+
+{% endblock %}
