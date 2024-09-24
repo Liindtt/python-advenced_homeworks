@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Видалення ПК{% endblock %}
+
+{% block content %}
+<h1>Видалити ПК "{{ computer.manufacturer }}"?</h1>
+<p>Ви дійсно хочете видалити цей запис? Ця дія не може бути скасована.</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Так, видалити</button>
+    <a href="{% url 'computers_list' %}" class="btn btn-secondary">Скасувати</a>
+</form>
+{% endblock %}

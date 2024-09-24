@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Список ПК{% endblock %}
+
+{% block content %}
+<h1>Список ПК</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Фірма-виробник</th>
+            <th>Тип процесора</th>
+            <th>Тактова частота (ГГц)</th>
+            <th>Об’єм ОЗУ</th>
+            <th>Наявність на складі</th>
+            <th>Дата виробництва</th>
+            <th>Деталі</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for computer in computers %}
+        <tr>
+            <td>{{ computer.manufacturer }}</td>
+            <td>{{ computer.cpu_type }}</td>
+            <td>{{ computer.clock_speed }}</td>
+            <td>{{ computer.ram_size }}</td>
+            <td>{{ computer.in_stock|yesno:"Так,Ні" }}</td>
+            <td>{{ computer.manufacture_date }}</td>
+            <td><a href="{% url 'computer_detail' computer.pk %}">Переглянути</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">Немає записів.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

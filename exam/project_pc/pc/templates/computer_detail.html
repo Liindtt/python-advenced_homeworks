@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Деталі ПК{% endblock %}
+
+{% block content %}
+<h1>Деталі ПК</h1>
+
+<div>
+    {% if computer.image %}
+        <img src="{{ computer.image.url }}" alt="Картинка ПК" style="max-width: 300px;">
+    {% else %}
+        Немає зображення
+    {% endif %}
+</div>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Фірма-виробник</th>
+        <td>{{ computer.manufacturer }}</td>
+    </tr>
+    <tr>
+        <th>Тип процесора</th>
+        <td>{{ computer.cpu_type }}</td>
+    </tr>
+    <tr>
+        <th>Тактова частота (ГГц)</th>
+        <td>{{ computer.clock_speed }}</td>
+    </tr>
+    <tr>
+        <th>Об’єм ОЗУ</th>
+        <td>{{ computer.ram_size }}</td>
+    </tr>
+    <tr>
+        <th>Наявність на складі</th>
+        <td>{{ computer.in_stock|yesno:"Так,Ні" }}</td>
+    </tr>
+    <tr>
+        <th>Дата виробництва</th>
+        <td>{{ computer.manufacture_date }}</td>
+    </tr>
+<!--    <tr>-->
+<!--        <th>Картинка</th>-->
+<!--        <td>-->
+<!--            {% if computer.image %}-->
+<!--                <img src="{{ computer.image.url }}" alt="Картинка ПК" style="max-width: 300px;">-->
+<!--            {% else %}-->
+<!--                Немає зображення-->
+<!--            {% endif %}-->
+<!--        </td>-->
+<!--    </tr>-->
+</table>
+
+
+<a href="{% url 'edit_computer' computer.pk %}" class="btn btn-primary">Редагувати</a>
+<a href="{% url 'delete_computer' computer.pk %}" class="btn btn-danger">Видалити</a>
+{% endblock %}
