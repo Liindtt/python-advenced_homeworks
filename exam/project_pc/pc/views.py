@@ -1,12 +1,21 @@
 from django.contrib import messages
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Computer
 from .forms import ComputerForm
 
 
 # Список всіх ПК
+# def computers_list(request):
+#     computers = Computer.objects.all()  # Отримуємо всі записи з бази даних
+#     return render(request, 'computers_list.html', {'computers': computers})
+
 def computers_list(request):
-    computers = Computer.objects.all()  # Отримуємо всі записи з бази даних
+    author = request.GET.get('author')
+    computers = Computer.objects.all()
+    if author:
+        computers = computers.filter(author__username=author)
+
     return render(request, 'computers_list.html', {'computers': computers})
 
 
@@ -21,9 +30,11 @@ def create_computer(request):
     if request.method == 'POST':
         form = ComputerForm(request.POST, request.FILES)  # Отримуємо дані з форми
         if form.is_valid():
-            form.save()  # Зберігаємо новий ПК у базу
+            computer = form.save(commit=False)
+            computer.author = request.user  # Призначаємо поточного користувача
+            computer.save()  # Зберігаємо новий ПК у базу
             messages.success(request, "Збірку ПК було успішно додано!")  # Повідомлення про успішне додавання ПК
-            return redirect('computers_list')  # Переадресація на список ПК
+            return redirect('computers_list')  # Переадресація на список ПК (PRG)
         else:
             messages.error(request, "Некоректно введені дані")  # Повідомлення про помилку
     else:
@@ -34,12 +45,14 @@ def create_computer(request):
 # Редагування існуючого ПК
 def edit_computer(request, pk):
     computer = get_object_or_404(Computer, pk=pk)  # Отримуємо ПК для редагування
+    if request.user != computer.author:
+        return HttpResponseForbidden("Ви не можете редагувати цей запис.")
     if request.method == 'POST':
         form = ComputerForm(request.POST, request.FILES, instance=computer)
         if form.is_valid():
             form.save()  # Зберігаємо зміни
             messages.success(request, "Збірку ПК змінено!")  # Повідомлення про успішні зміни ПК
-            return redirect('computers_list')  # Переадресація на список ПК
+            return redirect('computers_list')  # Переадресація на список ПК (PRG)
         else:
             messages.error(request, "Некоректно введені дані")  # Повідомлення про помилку
     else:
@@ -50,10 +63,12 @@ def edit_computer(request, pk):
 # Видалення ПК з підтвердженням
 def delete_computer(request, pk):
     computer = get_object_or_404(Computer, pk=pk)  # Отримуємо ПК для видалення
+    if request.user != computer.author:
+        return HttpResponseForbidden("Ви не можете видалити цей запис.")
     if request.method == 'POST':
         computer.delete()  # Видаляємо ПК
         messages.success(request, "Збірку ПК видалено!")  # Повідомлення про видалення ПК
-        return redirect('computers_list')  # Переадресація на список ПК
+        return redirect('computers_list')  # Переадресація на список ПК (PRG)
     return render(request, 'delete_computer_confirm.html', {'computer': computer})
 
 

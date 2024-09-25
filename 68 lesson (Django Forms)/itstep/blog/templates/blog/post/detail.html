@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p>
+        Tags: {{ post.tags.all | join:", " }}
+    </p>
+    <p class="date">
+        Published {{ post.publish }}
+    </p>
+    {{ post.body|linebreaks }}
+
+############################
+
+<form action="{% url 'blog:rate-post' post_id=post.pk %}" method="post" novalidate id="rating-form">
+    {% csrf_token %}
+    <div class="star-rating">
+        {% for radio in form.score %}
+        <input type="radio" name="{{ form.score.name }}" id="{{ radio.id.for_label }}" value="{{ radio.choice_label }}">
+            {% if radio.choice_label == current_rating|stringformat: "s" %} checked {% endif %}
+        <label class="fa fa-star" for="{{ radio.id_for_label }}"></label>
+        {% endfor %}
+    </div>
+    {{ form }}
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}
+
+
+{% block style %}
+
+    <style>
+        .star-rating {
+            direction: rtl;
+            display: inline-block;
+        }
+        .star-rating input {
+            display: none;
+        }
+        .star-rating label {
+            font-size: 2em;
+            color: grey;
+            cursor: pointer;
+        }
+        .star-rating input:checked ~ label {
+            color: gold;
+        }
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: gold;
+        }
+    </style>
+
+    <script>
+        function submitRating() {
+            document.getElementById('rating-form').submit();
+        }
+    </script>
+
+{% endblock %}

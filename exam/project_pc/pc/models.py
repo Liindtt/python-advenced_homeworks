@@ -30,4 +30,3 @@ class Computer(models.Model):
 
     def __str__(self):
         return f"{self.manufacturer} - {self.cpu_type} ({self.clock_speed} GHz)"
-

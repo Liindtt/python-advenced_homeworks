@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Профіль користувача{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="mt-4">Профіль користувача</h2>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title">{{ user.username }}</h4>
+                <p class="card-text"><strong>Ім'я:</strong> {{ user.first_name }}</p>
+                <p class="card-text"><strong>Прізвище:</strong> {{ user.last_name }}</p>
+                <p class="card-text"><strong>Електронна пошта:</strong> {{ user.email }}</p>
+            </div>
+        </div>
+
+        <!-- Кнопка для зміни пароля -->
+        <a href="{% url 'password_change' %}" class="btn btn-warning">Змінити пароль</a>
+    </div>
+{% endblock %}
