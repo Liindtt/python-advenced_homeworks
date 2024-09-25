@@ -46,7 +46,8 @@ def create_computer(request):
 def edit_computer(request, pk):
     computer = get_object_or_404(Computer, pk=pk)  # Отримуємо ПК для редагування
     if request.user != computer.author:
-        return HttpResponseForbidden("Ви не можете редагувати цей запис.")
+        messages.error(request, "Ви не можете редагувати цю конфігурацію.")  # Повідомлення про помилку
+        return redirect('computers_list')
     if request.method == 'POST':
         form = ComputerForm(request.POST, request.FILES, instance=computer)
         if form.is_valid():
@@ -64,7 +65,8 @@ def edit_computer(request, pk):
 def delete_computer(request, pk):
     computer = get_object_or_404(Computer, pk=pk)  # Отримуємо ПК для видалення
     if request.user != computer.author:
-        return HttpResponseForbidden("Ви не можете видалити цей запис.")
+        messages.error(request, "Ви не можете видалити цю конфігурацію.")  # Повідомлення про помилку
+        return redirect('computers_list')
     if request.method == 'POST':
         computer.delete()  # Видаляємо ПК
         messages.success(request, "Збірку ПК видалено!")  # Повідомлення про видалення ПК

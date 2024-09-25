@@ -4,76 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    {% load static %}
     <title>{% block title %}Мій сайт{% endblock %}</title>
     <style>
+
         .navbar {
-            justify-content: space-between;
+            justify-content: space-around;
         }
         .navbar .nav-item {
             margin-right: 10px;
         }
-        footer {
-          position: fixed;
-          left: 0;
-          bottom: 0;
-          width: 100%;
-          background-color: orange;
-          color: white;
-          text-align: center;
+        .body {
+          position: relative;
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+        }
+        .content {
+          flex-shrink: 0;
+        }
+        .footer {
+          margin-top: auto;
+        }
+        .footer div {
+          padding: 20px 0;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Головна</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'computers_list' %}">Список ПК</a>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'create_computer' %}">Додати ПК</a>
-                </li>
-                {% endif %}
-            </ul>
+<div class="body">
+    <div class="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'computers_list' %}"><img src="{{ MEDIA_URL }}computers/site-logo.png" width="250px"></a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_computer' %}">Додати ПК</a>
+                    </li>
+                    {% endif %}
+                </ul>
 
-            <!-- Форма пошуку -->
-            <form class="form-inline" method="get" action="{% url 'search_computer' %}">
-                <input class="form-control mr-sm-2" type="search" placeholder="Пошук" name="q" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Шукати</button>
-            </form>
+                <!-- Форма пошуку -->
+                <form class="form-inline" method="get" action="{% url 'search_computer' %}">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Пошук" name="q" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Шукати</button>
+                </form>
 
-            <!-- Кнопки входу/виходу/профілю/реєстрації -->
-            <ul class="navbar-nav ml-auto">
-                {% if user.is_authenticated %}
+                <!-- Кнопки входу/виходу/профілю/реєстрації -->
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'profile' %}">Профіль</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Вийти</a>
                     </li>
-                {% else %}
+                    {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}">Вхід</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'register' %}">Реєстрація</a>
                     </li>
-                {% endif %}
-            </ul>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+        {% for message in messages %}
+            <div class="alert alert-{% if message.level_tag == 'error' %}danger{% else %}{{ message.level_tag }}{% endif %}"
+            role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="container mb-4">
+            {% block content %}
+            {% endblock %}
         </div>
-    </nav>
-
-    <div class="container">
-        {% block content %}
-        {% endblock %}
     </div>
-
-    <footer class="text-center py-4">
-        <p>&copy; SmartComp | Поточна дата: {{ current_date }}</p>
+    <footer class="text-center footer bg-light">
+        <div>&copy; SmartComp | Поточна дата: {{ current_date }}</div>
     </footer>
+</div>
 
 </body>
 </html>

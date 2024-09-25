@@ -3,54 +3,115 @@
 {% block title %}Деталі ПК{% endblock %}
 
 {% block content %}
-<h1>Деталі ПК</h1>
+<style>
+    .top {
+        display: flex;
+        justify-content: space-between;
+    }
+    .disabled-btn {
+        background-color: #d3d3d3; /* Сірий колір для "заблокованого" вигляду */
+        color: #6c757d; /* Текст також сірого кольору */
+        pointer-events: auto; /* Залишаємо можливість натискання */
+        cursor: pointer; /* Стандартний курсор миші */
+        border: 1px solid #ccc; /* Сіра рамка */
+    }
 
-<div>
-    {% if computer.image %}
-        <img src="{{ computer.image.url }}" alt="Картинка ПК" style="max-width: 300px;">
-    {% else %}
-        Немає зображення
-    {% endif %}
+    .disabled-btn:hover {
+        background-color: #c0c0c0; /* Темніший сірий при наведенні */
+        color: #5a6268; /* Текст темніший при наведенні */
+    }
+</style>
+<div class="container mt-4">
+    <h2>Деталі ПК: {{ computer.pc_name }}</h2>
+
+    <!-- Опис і зображення поруч -->
+    <div class="row">
+        <!-- Картинка ПК -->
+        <div class="col-md-5">
+            {% if computer.image %}
+            <img src="{{ computer.image.url }}" class="img-fluid" alt="{{ computer.pc_name }}" style="max-width: 400px; height: auto;">
+            {% endif %}
+        </div>
+
+        <!-- Опис ПК -->
+        <div class="col-md-7">
+            <h4>Опис збірки</h4>
+            <p>{{ computer.description }}</p>
+        </div>
+    </div>
+
+    <!-- Таблиця з деталями ПК -->
+    <div class="row mt-4">
+        <div class="col-md-8 offset-md-2">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Тип процесора</th>
+                    <td>{{ computer.cpu_type }}</td>
+                </tr>
+                <tr>
+                    <th>Серія процесора</th>
+                    <td>{{ computer.cpu_series }}</td>
+                </tr>
+                <tr>
+                    <th>Модель процесора</th>
+                    <td>{{ computer.cpu_model }}</td>
+                </tr>
+                <tr>
+                    <th>Тактова частота</th>
+                    <td>{{ computer.clock_speed }} ГГц</td>
+                </tr>
+                <tr>
+                    <th>Тип відеокарти</th>
+                    <td>{{ computer.gpu_type }}</td>
+                </tr>
+                <tr>
+                    <th>Модель відеокарти</th>
+                    <td>{{ computer.gpu_model }}</td>
+                </tr>
+                <tr>
+                    <th>Кількість відеопам'яті</th>
+                    <td>{{ computer.gpu_ram }}GB</td>
+                </tr>
+                <tr>
+                    <th>Тип ОЗП</th>
+                    <td>{{ computer.ram_type }}</td>
+                </tr>
+                <tr>
+                    <th>Обсяг ОЗП</th>
+                    <td>{{ computer.ram_size }}</td>
+                </tr>
+                <tr>
+                    <th>Тип накопичувача</th>
+                    <td>{{ computer.disk_type }}</td>
+                </tr>
+                <tr>
+                    <th>Ємність накопичувача</th>
+                    <td>{{ computer.disk_value }} GB</td>
+                </tr>
+                <tr>
+                    <th>Наявність на складі</th>
+                    <td>{% if computer.in_stock %}Так{% else %}Ні{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Дата виготовлення</th>
+                    <td>{{ computer.manufacture_date }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
-
-<table class="table table-bordered">
-    <tr>
-        <th>Фірма-виробник</th>
-        <td>{{ computer.manufacturer }}</td>
-    </tr>
-    <tr>
-        <th>Тип процесора</th>
-        <td>{{ computer.cpu_type }}</td>
-    </tr>
-    <tr>
-        <th>Тактова частота (ГГц)</th>
-        <td>{{ computer.clock_speed }}</td>
-    </tr>
-    <tr>
-        <th>Об’єм ОЗУ</th>
-        <td>{{ computer.ram_size }}</td>
-    </tr>
-    <tr>
-        <th>Наявність на складі</th>
-        <td>{{ computer.in_stock|yesno:"Так,Ні" }}</td>
-    </tr>
-    <tr>
-        <th>Дата виробництва</th>
-        <td>{{ computer.manufacture_date }}</td>
-    </tr>
-<!--    <tr>-->
-<!--        <th>Картинка</th>-->
-<!--        <td>-->
-<!--            {% if computer.image %}-->
-<!--                <img src="{{ computer.image.url }}" alt="Картинка ПК" style="max-width: 300px;">-->
-<!--            {% else %}-->
-<!--                Немає зображення-->
-<!--            {% endif %}-->
-<!--        </td>-->
-<!--    </tr>-->
-</table>
-
-
-<a href="{% url 'edit_computer' computer.pk %}" class="btn btn-primary">Редагувати</a>
-<a href="{% url 'delete_computer' computer.pk %}" class="btn btn-danger">Видалити</a>
+<!-- Якщо користувач є автором цього ПК, то застосовуються відповідні стилі кнопок  -->
+{% if request.user != computer.author %}
+<div class="row mt-4 buttons text-center">
+    <div class="col-md-12 text-center">
+        <a href="{% url 'edit_computer' computer.pk %}" class="btn disabled-btn">Редагувати</a>
+        <a href="{% url 'delete_computer' computer.pk %}" class="btn disabled-btn">Видалити</a>
+    </div>
+</div>
+{% else %}
+<div class="buttons text-center">
+    <a href="{% url 'edit_computer' computer.pk %}" class="btn btn-primary">Редагувати</a>
+    <a href="{% url 'delete_computer' computer.pk %}" class="btn btn-danger">Видалити</a>
+</div>
+{% endif %}
 {% endblock %}

@@ -1,37 +1,35 @@
 {% extends 'base.html' %}
 
-{% block title %}Список ПК{% endblock %}
+{% block title %}
+    Каталог ПК
+{% endblock %}
 
 {% block content %}
-<h1>Список ПК</h1>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Фірма-виробник</th>
-            <th>Тип процесора</th>
-            <th>Тактова частота (ГГц)</th>
-            <th>Об’єм ОЗУ</th>
-            <th>Наявність на складі</th>
-            <th>Дата виробництва</th>
-            <th>Деталі</th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="container mt-4">
+    <h2 class="mb-4">Каталог персональних комп'ютерів</h2>
+
+    <div class="row">
         {% for computer in computers %}
-        <tr>
-            <td>{{ computer.manufacturer }}</td>
-            <td>{{ computer.cpu_type }}</td>
-            <td>{{ computer.clock_speed }}</td>
-            <td>{{ computer.ram_size }}</td>
-            <td>{{ computer.in_stock|yesno:"Так,Ні" }}</td>
-            <td>{{ computer.manufacture_date }}</td>
-            <td><a href="{% url 'computer_detail' computer.pk %}">Переглянути</a></td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="7">Немає записів.</td>
-        </tr>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ computer.image.url }}" class="card-img-top" alt="{{ computer.pc_name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ computer.pc_name }}</h5>
+                    <h6 class="card-title text-secondary">CPU: {{ computer.cpu_type }} {{ computer.cpu_series }} {{ computer.cpu_model }}</h6>
+                    <h6 class="card-title text-secondary">GPU: {{ computer.gpu_type }} {{ computer.gpu_model }} {{ computer.gpu_ram }}GB</h6>
+                    <h6 class="card-title text-secondary">RAM: {{ computer.ram_type }} {{ computer.ram_size }}</h6>
+                    <h6 class="card-title text-secondary">DISK: {{ computer.disk_type }} {{ computer.disk_value }}GB</h6>
+                    {% if computer.in_stock %}
+                    <span class="text-success">В наявності</span>
+                    {% else %}
+                    <span class="text-danger">В наявності</span>
+                    {% endif %}
+                    <span>| Автор: {{ computer.author }}</span>
+                    <a href="{% url 'computer_detail' computer.id %}" class="btn btn-primary mt-3">Детальніше</a>
+                </div>
+            </div>
+        </div>
         {% endfor %}
-    </tbody>
-</table>
+    </div>
+</div>
 {% endblock %}
