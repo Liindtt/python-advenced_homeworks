@@ -10,5 +10,5 @@ urlpatterns = [
     path('tag/create/', views.create_tag, name="create-tag"),
     path('tag/update/<int:pk>', views.edit_tag, name="edit-tag"),
     path('tag/delete/<int:pk>', views.delete_tag, name="delete-tag"),
-
+    path('rate/<int:post_id>/', views.rate_post, name='rate-post'),
 ]

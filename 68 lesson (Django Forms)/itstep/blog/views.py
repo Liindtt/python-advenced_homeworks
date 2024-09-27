@@ -2,34 +2,36 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
+
 from .models import Post, Tag, Rating
 from .forms import TagForm, TagFormModel, RatingForm
 
 
-@login_required  # Ensure the user is logged in before allowing them to rate
+@login_required
 def rate_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
-    user = request.user  # Get the current logged-in user
+    user = request.user
 
     if request.method == 'POST':
         form = RatingForm(request.POST)
         if form.is_valid():
-            score = form.cleaned_data['rating']  # Get the rating from the form
-            # Include the user in the update_or_create call
+            score = form.cleaned_data['score']
             rating, created = Rating.objects.update_or_create(
                 post=post,
-                user=user,  # Ensure the user is included
+                user=user,
                 defaults={'rating': score}
             )
             mess_value = "created" if created else "updated"
             messages.success(request, f"Rating for {post.title} with score {rating.rating} was {mess_value}")
             return redirect(reverse('blog:post-detail', kwargs={'id': post_id}))
         else:
-            messages.error(request, form.errors)  # Handle form errors
+            messages.error(request, form.errors)
     else:
         form = RatingForm()
 
     return render(request, 'blog/post/detail.html', {'post': post, 'form': form})
+
 
 def post_list(request):
     posts = Post.objects.all()
@@ -41,7 +43,7 @@ def post_detail(request, id):
     avg_rating = post.ratings.aggregate(Avg('rating'))['rating__avg'] or 0
     ratings = post.ratings.select_related('user')
     star_range = [i for i in range(5, 0, -1)]
-    return render(request, 'blog/post/fssfsf.html', {
+    return render(request, 'blog/post/detail.html', {
         'post': post,
         'avg_rating': avg_rating,
         'ratings': ratings,

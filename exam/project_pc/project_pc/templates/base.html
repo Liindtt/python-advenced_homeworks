@@ -91,3 +91,29 @@
 
 </body>
 </html>
+
+
+    <!-- Кнопка для профілю користувача, якщо він авторизований -->
+    <ul class="navbar-nav ml-auto">
+    {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'subject_create' %}">Додати предмет</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href="{% url 'profile' %}">Профіль</a>  <!-- Кнопка профілю -->
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Вийти</a>
+        </li>
+    </ul>
+    {% else %}
+    <!-- Кнопки для реєстрації та входу -->
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Реєстрація</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Увійти</a>
+        </li>
+    </ul>
+    {% endif %}

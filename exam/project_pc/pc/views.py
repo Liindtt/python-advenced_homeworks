@@ -5,11 +5,6 @@ from .models import Computer
 from .forms import ComputerForm
 
 
-# Список всіх ПК
-# def computers_list(request):
-#     computers = Computer.objects.all()  # Отримуємо всі записи з бази даних
-#     return render(request, 'computers_list.html', {'computers': computers})
-
 def computers_list(request):
     author = request.GET.get('author')
     computers = Computer.objects.all()
